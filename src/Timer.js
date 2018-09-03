@@ -11,14 +11,20 @@ class Timer extends Component {
     }
   }
 
-
-
-  //Your code here
-
-
-
   componentDidMount() {
     this.interval = setInterval(this.clockTick, this.props.updateInterval*1000)
+  }
+
+  componentDidUpdate() {
+    console.log("componentDidUpdate state: to", this.state)
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.time === nextState.time) {
+      return false
+    } else {
+      return true
+    }
   }
 
   componentWillUnmount() {
